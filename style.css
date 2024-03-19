@@ -67,11 +67,10 @@ html {
 .prediccion {
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 40rem;
   height: 23em;
   border-radius: 15px;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background-color: rgba(30, 6, 71, 0.73);
   text-align: center;
   line-height: 2;
   transform: translateY(45%);
@@ -86,7 +85,7 @@ html {
   }
   100% {
     height: 50rem;
-    width: 100%;
+    width: 80vw;
     font-size: 1rem;
   }
 }
