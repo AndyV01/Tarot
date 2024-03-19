@@ -70,23 +70,49 @@ html {
   width: 70%;
   height: 23em;
   border-radius: 15px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   text-align: center;
   line-height: 2;
   transform: translateY(45%);
-  animation: prediccion 6000ms;
+  animation: showPrediction 3s ease-in-out forwards;
+  overflow: hidden;
 }
-@keyframes prediccion {
+@keyframes showPrediction {
   0% {
     height: 0;
     width: 0;
     font-size: 0;
   }
   100% {
-    height: 23eme;
+    height: 30em;
     width: 70%;
     font-size: 1rem;
+  }
+}
+#prediction-text {
+  opacity: 0; 
+  animation: revealPrediction 3s ease-in-out forwards;
+}
+@keyframes revealPrediction {
+  90% {
+    opacity: 0; 
+  }
+  100% {
+    opacity: 1; 
+  }
+}
+.btn {
+  opacity: 0; 
+  animation: showButton 4s ease-in-out forwards; 
+}
+
+@keyframes showButton {
+  90% {
+    opacity: 0; 
+  }
+  100% {
+    opacity: 1; 
   }
 }
 p {
@@ -296,10 +322,10 @@ a {
   }
   .prediccion {
     margin-bottom: 30rem;
-    height: 30em;
+    height: 35em;
   }
   .btn {
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-left: 15%;
   }
   .startok{

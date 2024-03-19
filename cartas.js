@@ -161,7 +161,38 @@ class MixOrMatch {
     constructor(cards) {
         this.cardsArray = cards
         this.audioController = new AudioController()
-
+        this.predicciones = [
+            {
+                prediccion:"En tu futuro cercano, se vislumbra un cambio significativo que alterará el curso de tu vida. Prepárate para abrazar esta transformación con valentía y una mente abierta, ya que te llevará a nuevas y emocionantes oportunidades de crecimiento personal y desarrollo espiritual."
+            },
+            {
+                prediccion:"Una situación inesperada está por surgir en tu camino, trayendo consigo una nueva perspectiva y una mayor comprensión de tu propósito en la vida. Mantén tus sentidos alerta y confía en tu intuición para navegar por estos cambios con gracia y sabiduría."
+            },
+            {
+                prediccion:"Las decisiones que tomes en este momento tendrán un impacto duradero en tu futuro. Te encuentras en un punto crucial en tu viaje, donde tus elecciones determinarán el rumbo que tomarás. Tómate el tiempo necesario para reflexionar y sintonizarte con tus verdaderos deseos y valores."
+            },
+            {
+                prediccion:"Aunque puedas enfrentar desafíos en el camino, recuerda que tienes dentro de ti la fuerza y la determinación necesarias para superar cualquier obstáculo. Confía en tus habilidades y mantén una actitud positiva mientras te enfrentas a los desafíos que se presenten."
+            },
+            {
+                prediccion:"Se avecinan momentos de alegría y realización para ti. Despierta cada día con gratitud en tu corazón y confianza en tus capacidades. Recuerda que eres digno/a de amor, éxito y felicidad, y que mereces todas las bendiciones que el universo tiene reservadas para ti."
+            },
+            {
+                prediccion:"Presta atención a las señales que te envía el universo en forma de sincronicidades y coincidencias. Estas señales pueden servir como guía en tu camino y proporcionarte claridad sobre los pasos que debes tomar hacia tus metas y sueños más profundos."
+            },
+            {
+                prediccion:"Cultiva relaciones significativas y auténticas que nutran tu alma y te brinden apoyo en los momentos difíciles. El amor y la conexión son aspectos fundamentales de la experiencia humana, y al rodearte de personas que te aman y te aceptan tal como eres, encontrarás mayor satisfacción y plenitud en tu vida."
+            },
+            {
+                prediccion:"Recuerda que cada experiencia, ya sea positiva o negativa, tiene el potencial de enseñarte lecciones valiosas y ayudarte a crecer como persona. Aprovecha cada oportunidad de aprendizaje y mira hacia adelante con esperanza y optimismo, sabiendo que cada desafío te acerca más a tu verdadero yo."
+            },
+            {
+                prediccion:"Confía en el proceso de la vida y en el poder del universo para guiarte en la dirección correcta. Aunque puedas sentirte perdido/a en momentos de incertidumbre, confía en que todo está sucediendo según el plan divino y que estás siendo conducido/a hacia tu mayor bienestar y felicidad."
+            },
+            {
+                prediccion:"Enfrenta cada día con coraje y determinación, sabiendo que tienes dentro de ti la fuerza necesaria para superar cualquier adversidad que se presente en tu camino. Mantén la fe en ti mismo/a y en tus habilidades para crear la vida que deseas, y no permitas que el miedo o la duda te detengan en tu búsqueda de la realización personal y espiritual."
+            },
+        ]
     }
     startGame() {
         this.cardToCheck = null
@@ -178,21 +209,26 @@ class MixOrMatch {
         card.classList.add("visible")
         this.totalClicks++
         if (this.totalClicks == 3) {
-            this.victory()
+            this.showPrediction()
         }
      }
     } 
-    victory() {
+    showPrediction() {
         clearInterval(this.countDown)
         this.audioController.victory()
+        // Elegir una predicción aleatoria
+        const randomIndex = Math.floor(Math.random() * this.predicciones.length);
+        const randomPrediction = this.predicciones[randomIndex].prediccion;
         setTimeout(()=> {
-        document.getElementById("victory-text"). classList.add("visible")
-    }, 1000)
+            const predictionParagraph = document.getElementById("prediction-text");
+        predictionParagraph.textContent = randomPrediction;
+        const predictionElement = document.getElementById("victory-text");
+        predictionElement.classList.add("visible"); 
+    }, 300)
     let start = document.getElementsByClassName('startok')
         
     start.addEventListener('click', ()=> {
             this.startGame()
-            
     })
 }
 
@@ -233,21 +269,9 @@ if(document.readyState === 'loading') {
 } else {
     ready()
 }
-function shuffleCards() {
-    for(let i = this.cardsArray.length - 1; i > 0; i--){
-        let randIndex = Math.floor(Math.random() * (i+1))
-        // Intercambiar las posiciones de las cartas en el array
-        [this.cardsArray[i], this.cardsArray[randIndex]] = [this.cardsArray[randIndex], this.cardsArray[i]]
-    }
-    // Actualizar el orden en el DOM
-    this.cardsArray.forEach((card, index) => {
-        card.style.order = index;
-    })
-}
 
 const volverButton = document.querySelector('.start');
 volverButton.addEventListener('click', () => {
-    
     location.reload();
 });
 
