@@ -208,6 +208,20 @@ class MixOrMatch {
         this.audioController.flip()
         card.classList.add("visible")
         this.totalClicks++
+        setTimeout(() => {
+            const cardsContainer = document.getElementById('selected-cards-container');
+            if (cardsContainer && this.totalClicks <= 3) {
+                // Asumiendo que el tamaño de las cartas y el espacio entre ellas es conocido
+                let cardWidth = 100; // Ancho de la carta, ajusta según tu diseño
+                let gap = 80; // Espacio entre cartas
+                let offset = (cardWidth + gap) * (this.totalClicks - 1);
+                
+                card.style.position = 'absolute';
+                card.style.left = `${offset}px`;
+                // Aquí se combinan las transformaciones para girar y mover la carta
+                card.style.transform = `translateY(-10%) rotateY(0) translateX(220%)`;
+            }
+        }, 100);
         if (this.totalClicks == 3) {
             this.showPrediction()
         }

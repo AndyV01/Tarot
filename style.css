@@ -277,6 +277,17 @@ a {
   border-radius: 15px;
   transition: transform 1500ms ease-in-out;
 }
+.selected-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -10rem;
+  width: 80%; 
+  pointer-events: none;
+ ;
+ }
+ 
 
 .card.visible .card-back {
   transform: rotateY(-180deg);
