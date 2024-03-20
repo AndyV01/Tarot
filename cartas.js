@@ -225,6 +225,7 @@ class MixOrMatch {
         const predictionElement = document.getElementById("victory-text");
         predictionElement.classList.add("visible"); 
     }, 300)
+    
     let start = document.getElementsByClassName('startok')
         
     start.addEventListener('click', ()=> {
